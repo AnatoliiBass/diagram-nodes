@@ -11,7 +11,6 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "beautiful-react-diagrams": "^0.5.1",
     "closest": "^0.0.1",
     "dagre": "^0.8.5",
     "lodash": "^4.17.21",

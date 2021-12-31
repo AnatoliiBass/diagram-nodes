@@ -5,10 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 const Header = ({ titles, activeVPC, setCurrentVPC }) => {
-   //const [vpc, setVpc] = React.useState(activeVPC)
-   console.log(activeVPC)
    const handleChange = (event) => {
-      //setVpc(event.target.value)
       setCurrentVPC(event.target.value)
    }
    const elements = titles.map(item => (
