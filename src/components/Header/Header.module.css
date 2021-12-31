@@ -1,0 +1,11 @@
+.header {
+   height: 100%;
+   border: 2px #333 solid;
+   grid-area: head;
+   display: flex;
+   align-items: center;
+   padding: 10px;
+}
+.select {
+   flex: 0 0 33%;
+}
