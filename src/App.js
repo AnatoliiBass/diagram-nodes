@@ -1,14 +1,14 @@
 import style from './App.module.css';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Main from './components/Main/Main';
-import Sidebar from './components/Sidebar/Sidebar';
+import MainContainer from './components/Main/MainContainer';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 const App = () => {
   return (
     <div className={style.wrapper}>
       <HeaderContainer />
-      <Main />
-      <Sidebar />
+      <MainContainer />
+      <SidebarContainer />
     </div>
   )
 }

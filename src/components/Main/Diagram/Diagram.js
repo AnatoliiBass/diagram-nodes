@@ -64,14 +64,12 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
       }
    }
 
-   model.addAll(nodeVPC, ...nodesSB, ...nodesEC, ...nodesSG, ...linksSB, ...linksEC, ...linksSG);
+   model.addAll(nodeVPC, ...nodesSB, ...nodesEC, ...nodesSG, ...linksSB, ...linksEC, ...linksSG)
 
-   engine.setModel(model);
-
-
+   engine.setModel(model)
 
    return (
-      <DemoCanvasWidget>
+      <DemoCanvasWidget >
          <CanvasWidget engine={engine} />
       </DemoCanvasWidget>
    )
