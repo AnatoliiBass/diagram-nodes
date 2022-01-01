@@ -159,7 +159,7 @@ const initState = {
                   "Name": "running"
                },
                "StateTransitionReason": "",
-               "SubnetId": "subnet-97467",
+               "SubnetId": "subnet-974675",
                "VpcId": "vpc-27f9f1",
                "Architecture": "x86_64",
                "BlockDeviceMappings": [
