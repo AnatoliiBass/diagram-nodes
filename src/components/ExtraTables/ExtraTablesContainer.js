@@ -1,10 +1,9 @@
 import { connect } from "react-redux"
-import Sidebar from "./Sidebar"
+import ExtraTables from "./ExtraTables"
 
 let obj = {}
 
 let mapStateToProps = (state) => {
-   //console.log(state.VPC.activeDiagram);
 
    const id = state.VPC.activeDiagram?.toLowerCase()
    if (id?.includes('vpc')) {
@@ -19,7 +18,6 @@ let mapStateToProps = (state) => {
    }
 
    return {
-      id: id.toUpperCase(),
       tableInfo: obj
    }
 }
@@ -30,6 +28,6 @@ let mapDispatchToProps = (dispatch) => {
    }
 }
 
-const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+const ExtraTablesContainer = connect(mapStateToProps, mapDispatchToProps)(ExtraTables)
 
-export default SidebarContainer
+export default ExtraTablesContainer

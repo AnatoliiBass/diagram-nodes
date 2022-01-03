@@ -1,14 +1,16 @@
 import style from './App.module.css';
+import ExtraTablesContainer from './components/ExtraTables/ExtraTablesContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import MainContainer from './components/Main/MainContainer';
+import Main from './components/Main/Main';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 const App = () => {
   return (
     <div className={style.wrapper}>
       <HeaderContainer />
-      <MainContainer />
+      <Main />
       <SidebarContainer />
+      <ExtraTablesContainer />
     </div>
   )
 }

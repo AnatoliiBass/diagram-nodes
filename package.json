@@ -22,6 +22,7 @@
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
     "resize-observer-polyfill": "^1.5.1",
+    "storm-react-diagrams": "^5.2.1",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

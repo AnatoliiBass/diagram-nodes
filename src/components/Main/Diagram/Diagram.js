@@ -3,12 +3,16 @@ import createEngine, { DiagramModel, DefaultNodeModel } from '@projectstorm/reac
 import { CanvasWidget } from '@projectstorm/react-canvas-core';
 import { DemoCanvasWidget } from './CanvasWidget.tsx';
 
-const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
+const Diagram = ({ activeVPC, subnets, ECs, SGs, setCurrentDiagram }) => {
    const engine = createEngine();
 
    const model = new DiagramModel();
 
+
    const nodeVPC = new DefaultNodeModel('VPC', 'rgb(255,99,66)');
+   nodeVPC.registerListener({
+      selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
+   })
    const portVPC = nodeVPC.addOutPort(activeVPC);
    nodeVPC.setPosition(50, 200);
 
@@ -23,6 +27,9 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
       for (let i = 0; i < subnets.length; i++) {
          nodesSB.push(new DefaultNodeModel('SUBNET', 'rgb(192,255,0)'))
          nodesSB[i].setPosition(250, positionY)
+         nodesSB[i].registerListener({
+            selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
+         })
          portsInSB.push(nodesSB[i].addInPort(subnets[i]))
          portsOutSB.push(nodesSB[i].addOutPort(''))
          linksSB.push(portVPC.link(portsInSB[i]))
@@ -38,8 +45,11 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
 
    if (ECs.length && subnets.length) {
       for (let i = 0; i < ECs.length; i++) {
-         nodesEC.push(new DefaultNodeModel('EC', 'rgb(0, 153, 255)'))
+         nodesEC.push(new DefaultNodeModel('EC2', 'rgb(0, 153, 255)'))
          nodesEC[i].setPosition(450, positionY)
+         nodesEC[i].registerListener({
+            selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
+         })
          portsInEC.push(nodesEC[i].addInPort(ECs[i].reservId))
          portsOutEC.push(nodesEC[i].addOutPort(''))
          linksEC.push(portsOutSB[ECs[i].parendNum].link(portsInEC[i]))
@@ -56,6 +66,9 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
       for (let i = 0; i < SGs.length; i++) {
          nodesSG.push(new DefaultNodeModel('Security Group', 'rgb(153, 0, 255)'))
          nodesSG[i].setPosition(650, positionY)
+         nodesSG[i].registerListener({
+            selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
+         })
          portsInSG.push(nodesSG[i].addInPort(SGs[i].SGid))
          if (SGs[i].parendNum >= 0) {
             linksSG.push(portsOutEC[SGs[i].parendNum].link(portsInSG[i]))
@@ -65,6 +78,10 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs }) => {
    }
 
    model.addAll(nodeVPC, ...nodesSB, ...nodesEC, ...nodesSG, ...linksSB, ...linksEC, ...linksSG)
+
+   nodeVPC.registerListener({
+      selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
+   })
 
    engine.setModel(model)
 

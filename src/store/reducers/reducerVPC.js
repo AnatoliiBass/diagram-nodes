@@ -1,6 +1,7 @@
 const SET_ACTIVE_VPC = 'SET_ACTIVE_VPC'
 const SET_ACTIVE_DIAGRAM = 'SET_ACTIVE_DIAGRAM'
 
+
 const initState = {
    "Vpcs": [
       {
@@ -78,6 +79,7 @@ const reducerVPC = (state = initState, action) => {
 }
 
 export const setActiveVPCCreator = (value) => ({ type: SET_ACTIVE_VPC, value })
-export const setActiveDiagramCreator = (diagram) => ({ type: SET_ACTIVE_DIAGRAM, diagram})
+export const setActiveDiagramCreator = (diagram) => ({ type: SET_ACTIVE_DIAGRAM, diagram })
+
 
 export default reducerVPC

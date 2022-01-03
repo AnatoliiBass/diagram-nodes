@@ -1,11 +1,10 @@
 .wrapper {
-   height: 100%;
-   width: 100%;
    display: grid;
    grid-template-areas:
       "head head"
-      "main side";
-   grid-template-rows: 1fr 6fr;
+      "main side"
+      "table table";
+   grid-template-rows: auto minmax(30rem, auto) auto;
    grid-template-columns: 2.5fr 1fr;
    gap: 5px;
 }

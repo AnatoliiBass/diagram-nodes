@@ -1,5 +1,4 @@
 .header {
-   height: 100%;
    border: 2px #333 solid;
    grid-area: head;
    display: flex;

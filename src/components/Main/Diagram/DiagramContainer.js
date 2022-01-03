@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import { setActiveDiagramCreator } from "../../../store/reducers/reducerVPC"
 import Diagram from "./Diagram"
 
 
@@ -30,7 +31,9 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
    return {
-
+      setCurrentDiagram: (diagram) => {
+         dispatch(setActiveDiagramCreator(diagram))
+      }
    }
 }
 
