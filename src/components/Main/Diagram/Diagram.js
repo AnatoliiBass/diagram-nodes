@@ -16,6 +16,21 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs, setCurrentDiagram }) => {
    const portVPC = nodeVPC.addOutPort(activeVPC);
    nodeVPC.setPosition(50, 200);
 
+   portVPC.registerListener({
+      nodesUpdated: e => console.log("nodesUpdated", e),
+      linksUpdated: e => console.log("linksUpdated", e),
+      zoomUpdated: e => console.log("zoomUpdated", e),
+      gridUpdated: e => console.log("gridUpdated", e),
+      offsetUpdated: e => {
+         e.stopPropagation(() => { e.firing = true })
+         console.log("offsetUpdated", e)
+      },
+      entityRemoved: e => console.log("entityRemoved", e),
+      selectionChanged: e => console.log("selectionChanged", e),
+      sourcePortChanged: e => console.log("sourcePortChanged", e),
+      targetPortChanged: e => console.log("targetPortChanged", e)
+   })
+
 
    let positionY = 50
    const nodesSB = []
@@ -36,6 +51,12 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs, setCurrentDiagram }) => {
          positionY += 100
       }
    }
+   // linksSB[0]?.registerListener({
+   //    entityRemoved: e => console.log("entityRemoved", e),
+   //    selectionChanged: e => console.log("selectionChanged", e),
+   //    sourcePortChanged: e => console.log("sourcePortChanged", e),
+   //    targetPortChanged: e => console.log("targetPortChanged", e)
+   // })
 
    positionY = 50
    const nodesEC = []
@@ -79,9 +100,21 @@ const Diagram = ({ activeVPC, subnets, ECs, SGs, setCurrentDiagram }) => {
 
    model.addAll(nodeVPC, ...nodesSB, ...nodesEC, ...nodesSG, ...linksSB, ...linksEC, ...linksSG)
 
-   nodeVPC.registerListener({
-      selectionChanged: e => setCurrentDiagram(Object.keys(e.entity.ports)[0].toLowerCase())
-   })
+
+   // model.registerListener({
+   //    nodesUpdated: e => console.log("nodesUpdated", e),
+   //    linksUpdated: e => console.log("linksUpdated", e),
+   //    zoomUpdated: e => console.log("zoomUpdated", e),
+   //    gridUpdated: e => console.log("gridUpdated", e),
+   //    offsetUpdated: e => {
+   //       e.stopPropagation((e) => { e.firing = true })
+   //       console.log("offsetUpdated", e)
+   //    },
+   //    entityRemoved: e => console.log("entityRemoved", e),
+   //    selectionChanged: e => console.log("selectionChanged", e),
+   //    sourcePortChanged: e => console.log("sourcePortChanged", e),
+   //    targetPortChanged: e => console.log("targetPortChanged", e)
+   // })
 
    engine.setModel(model)
 

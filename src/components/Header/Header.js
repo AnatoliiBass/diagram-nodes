@@ -3,6 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Typography } from '@mui/material';
 const Header = ({ titles, activeVPC, setCurrentVPC }) => {
    const handleChange = (event) => {
       setCurrentVPC(event.target.value)
@@ -25,6 +26,7 @@ const Header = ({ titles, activeVPC, setCurrentVPC }) => {
                {elements}
             </Select>
          </FormControl>
+         <Typography>If Node has extra tables, look down!!!</Typography>
       </header>
    )
 }

@@ -6,7 +6,7 @@ const DrowTable = ({ name, table }) => {
    const values = Object.values(table[0])
    const keys = Object.keys(table[0])
    const setSubelements = (item) => {
-      return keys.map((el, i) => (<TableCell key={Date.now() * 20 + i} align="left">{item[el].toString()}</TableCell>))
+      return keys.map((el, i) => (<TableCell key={Date.now() * 20 + i} align="left">{item[el]?.toString()}</TableCell>))
    }
    if (table.length > 1) {
       heads = keys.map((item, index) => (<TableCell key={Date.now() * 10 + index} align="left">{item}</TableCell>))
@@ -23,7 +23,7 @@ const DrowTable = ({ name, table }) => {
       for (let i = 0; i < keys.length; i++) {
          tableData.push({
             key: keys[i],
-            value: values[i].toString()
+            value: values[i]?.toString()
          })
          elements = tableData.map((item, index) => (
             <TableRow key={Date.now() + index}>

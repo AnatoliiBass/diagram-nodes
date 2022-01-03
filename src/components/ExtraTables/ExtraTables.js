@@ -66,8 +66,22 @@ const ExtraTables = ({ tableInfo }) => {
    }
    createTablesObj(tableInfo)
    const newTableData = tableData.filter(item => !Number.isInteger(+item.name))
-   console.log(newTableData);
-   const elements = newTableData.map((item, index) => (<DrowTable key={Date.now() + index} name={item.name} table={item.table} />))
+   const names = [...new Set(newTableData.map(item => item.name))]
+   let uniqTable = []
+   for (let i = 0; i < names.length; i++) {
+      const current = newTableData.filter(item => item.name === names[i])
+      if (current.length > 1) {
+         const concatObj = { name: names[i], table: [].concat(...current.map(item => item.table)) }
+         uniqTable.push(concatObj);
+      } else {
+
+         uniqTable.push({
+            name: names[i],
+            table: current
+         })
+      }
+   }
+   const elements = uniqTable.map((item, index) => (<DrowTable key={Date.now() + index} name={item.name} table={item.table} />))
 
    return (
       <section className={style.extra}>
